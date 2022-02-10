@@ -3,25 +3,23 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-
-
-
+// const userRouter = require("./user_router");
 
 // ====================== Routers Setup
-const indexRouter = require("./routes/index");
+const throwRouter = require("./routes/throw");
 const usersRouter = require("./routes/users");
+const postsRouter = require("./routes/posts");
+const userFriendsRouter = require("./routes/user_friends");
 
 const app = express();
 
 
 
-
-// ====================== View Engine Setup
+// // ====================== View Engine Setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-
-
+const port = 3000;
 
 // ====================== Global Middlewares Setup
 // Logger
@@ -40,31 +38,32 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-
-
 // ====================== Static Folders Setup
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public_second")));
 app.use("/virtual", express.static(path.join(__dirname, "public")));
 
+app.use("/user", usersRouter);
+app.use("/throw", throwRouter);
+app.use("/posts", postsRouter);
+app.use("/userFriends", userFriendsRouter);
 
-
-
-// ====================== Init Routers
-app.use("/", indexRouter);
-app.get('/file.txt', function (req, res) {
-    res.render('index', { title: 'TXT file' });
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
-// Our global Middleware 2
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});
+
 app.use(function (req, res, next) {
-    console.log("GLOBAL LOGGER 2 - after index routes");
+    console.log("GLOBAL LOGGER 2");
     next();
 });
-app.use("/users", usersRouter);
 
-
-
+app.get("/hello", (req, res) => {
+    res.send("Hello World!");
+});
 
 // ====================== Global Error Handlers
 // catch 404 and forward to error handler
@@ -75,6 +74,7 @@ app.use(function (req, res, next) {
 
 // Error handler (has 4 params instead of 3)
 app.use(function (err, req, res, next) {
+    console.log('Woops, looks like that we have a global issue.');
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -83,5 +83,3 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
-
-module.exports = app;

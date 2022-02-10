@@ -1,25 +1,38 @@
-const express = require('express');
-const router = express.Router();
+const express = require("express");
+const usersRouter = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.send('Got a GET request')
+usersRouter.use('/', function (req, res, next) {
+    console.log("USERS LOGGER 1");
+    next();
 });
 
-router.post('/', function (req, res) {
-    res.send('Got a POST request')
-})
+/* GET users listing. */
+usersRouter.get("/", function (req, res, next) {
+    res.send("Got a GET request");
+});
 
-router.put('/', function (req, res) {
-    res.send('Got a PUT request')
-})
+usersRouter.get("/friends", function (req, res, next) {
+    res.send("Got a FRIENDS GET in USERS routes");
+});
 
-router.patch('/', function (req, res) {
-    res.send('Got a PATCH request')
-})
+usersRouter.get("/:userId/friends/:friendId", function (req, res) {
+    res.send(req.params);
+});
 
-router.delete('/', function (req, res) {
-    res.send('Got a DELETE request')
-})
+usersRouter.post("/", function (req, res) {
+    res.send("Got a POST request");
+});
 
-module.exports = router;
+usersRouter.put("/", function (req, res) {
+    res.send("Got a PUT request");
+});
+
+usersRouter.patch("/", function (req, res) {
+    res.send("Got a PATCH request");
+});
+
+usersRouter.delete("/", function (req, res) {
+    res.send("Got a DELETE request");
+});
+
+module.exports = usersRouter;
