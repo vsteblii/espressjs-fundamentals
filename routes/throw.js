@@ -12,6 +12,7 @@ throwRouter.get("/1", function (req, res, next) {
 
 throwRouter.use('/', function (req, res, next) {
     console.log("We throw an error in middleware!");
+    // important just for async functions
     next(new Error('Wops in middleware'));
 });
 
