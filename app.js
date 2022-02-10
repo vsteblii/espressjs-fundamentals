@@ -73,6 +73,7 @@ app.use(function (req, res, next) {
 });
 
 // Error handler (has 4 params instead of 3)
+// if we skip it, express will use default error handler
 app.use(function (err, req, res, next) {
     console.log('Woops, looks like that we have a global issue.');
     // set locals, only providing error in development
