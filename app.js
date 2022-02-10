@@ -53,6 +53,9 @@ app.use("/virtual", express.static(path.join(__dirname, "public")));
 
 // ====================== Init Routers
 app.use("/", indexRouter);
+app.get('/file.txt', function (req, res) {
+    res.render('index', { title: 'TXT file' });
+});
 // Our global Middleware 2
 app.use(function (req, res, next) {
     console.log("GLOBAL LOGGER 2 - after index routes");
