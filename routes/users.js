@@ -4,6 +4,8 @@ const usersRouter = express.Router();
 usersRouter.use('/', function (req, res, next) {
     console.log("USERS LOGGER 1");
     next();
+    // importtant!
+    console.log('I will also execute after "next", don\'t forget to add return.');
 });
 
 /* GET users listing. */
