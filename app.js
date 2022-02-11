@@ -12,13 +12,10 @@ const userFriendsRouter = require("./routes/user_friends");
 
 const app = express();
 
-
-
 // // ====================== View Engine Setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-const port = 3000;
 
 // ====================== Global Middlewares Setup
 // Logger
@@ -51,6 +48,7 @@ app.get("/", (req, res) => {
     res.send("Root - Hello World!");
 });
 
+const port = 3000;
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

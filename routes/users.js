@@ -8,7 +8,7 @@ usersRouter.use('/', function (req, res, next) {
 
 /* GET users listing. */
 usersRouter.get("/", function (req, res) {
-    res.send("Users - Got a GET request");
+    res.render('index', {title: "Users - Got a GET request"});
 });
 
 usersRouter.get("/friends", function (req, res) {
