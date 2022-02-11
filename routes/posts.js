@@ -12,7 +12,7 @@ function localLogger (req, res, next) {
 }
 
 postsRouter.get("/",localLogger,localLogger,localLogger, function (req, res, next) {
-    res.send("Got a GET request");
+    res.send("Posts - Got a GET request");
 });
 
 postsRouter.use('/', function (req, res, next) {

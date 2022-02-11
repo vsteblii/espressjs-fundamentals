@@ -7,12 +7,12 @@ usersRouter.use('/', function (req, res, next) {
 });
 
 /* GET users listing. */
-usersRouter.get("/", function (req, res, next) {
-    res.send("Got a GET request");
+usersRouter.get("/", function (req, res) {
+    res.send("Users - Got a GET request");
 });
 
-usersRouter.get("/friends", function (req, res, next) {
-    res.send("Got a FRIENDS GET in USERS routes");
+usersRouter.get("/friends", function (req, res) {
+    res.send("Users - Got a FRIENDS GET in USERS routes");
 });
 
 usersRouter.get("/:userId/friends/:friendId", function (req, res) {

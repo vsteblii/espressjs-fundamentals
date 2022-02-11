@@ -49,7 +49,7 @@ app.use("/posts", postsRouter);
 app.use("/userFriends", userFriendsRouter);
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Root - Hello World!");
 });
 
 app.listen(port, () => {
@@ -62,7 +62,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/hello", (req, res) => {
-    res.send("Hello World!");
+    res.send("Root - Hello World!");
 });
 
 // ====================== Global Error Handlers
